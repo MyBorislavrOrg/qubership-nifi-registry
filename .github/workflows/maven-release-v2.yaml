@@ -43,7 +43,7 @@ on:
           - "github"
           - "central"
         required: false
-        default: "central"
+        default: "github"
       mvn-args:
         description: "Additional maven arguments to pass (e.g. -DskipTests=true -Dmaven.javadoc.skip=true)"
         required: false
@@ -52,7 +52,7 @@ on:
       build-docker:
         description: "Build Docker image"
         required: false
-        default: false
+        default: true
         type: boolean
       mark-as-latest:
         description: "Mark release and Docker image if any as 'latest'"
