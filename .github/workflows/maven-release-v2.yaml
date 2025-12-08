@@ -169,6 +169,7 @@ jobs:
           else
             TAGS="v${{ needs.deploy.outputs.release-version }}"
           fi
+          echo "TAGS=${TAGS}" >> $GITHUB_ENV
         env:
           LATEST: "${{ inputs.mark-as-latest }}"
       - name: "Docker Build"
@@ -177,6 +178,7 @@ jobs:
         with:
           ref: v${{ needs.deploy.outputs.release-version }}
           download-artifact: true
+          tags: "${{ env.TAGS }}"
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
