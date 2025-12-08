@@ -83,8 +83,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           maven-user: ${{ inputs.profile == 'github' && github.actor || secrets.MAVEN_USER }}
           maven-password: ${{ inputs.profile == 'github' && secrets.GITHUB_TOKEN || secrets.MAVEN_PASSWORD }}
-          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          # gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          # gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           dry-run: "true"
   deploy:
     name: "Maven Build and Publish"
@@ -118,8 +118,8 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }} # It can be ${{ secrets.GITHUB_TOKEN }} if default branch isn't protected
           maven-user: ${{ inputs.profile == 'github' && github.actor || secrets.MAVEN_USER }}
           maven-password: ${{ inputs.profile == 'github' && secrets.GITHUB_TOKEN || secrets.MAVEN_PASSWORD }}
-          gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          # gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
+          # gpg-passphrase: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
           dry-run: "false"
 
       - name: "Upload all Maven target directories"
