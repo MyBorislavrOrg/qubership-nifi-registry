@@ -168,7 +168,7 @@ jobs:
         uses: netcracker/qubership-workflow-hub/actions/metadata-action@v2.0.5
         with:
           default-template: "{{major}}.{{minor}}.{{patch}}"
-          ref: ${{ github.ref }}
+          ref: ${{ needs.deploy.outputs.release-version }}
       - name: Set env
         run: |
           if [ "${{ inputs.mark-as-latest }}" == "true" ]; then
