@@ -170,12 +170,9 @@ jobs:
           default-template: "{{major}}.{{minor}}.{{patch}}"
           ref: ${{ needs.deploy.outputs.release-version }}
       - name: Set env
+        if: ! inputs.mark-as-latest
         run: |
-          if [ "${{ inputs.mark-as-latest }}" == "true" ]; then
-            echo "TAGS=''" >> $GITHUB_ENV
-          else
-            echo "TAGS=${{ steps.meta.outputs.result }}" >> $GITHUB_ENV
-          fi
+          echo "TAGS=${{ steps.meta.outputs.result }}" >> $GITHUB_ENV
 
       - name: "Docker Build"
         id: docker_build
@@ -183,7 +180,7 @@ jobs:
         with:
           ref: v${{ needs.deploy.outputs.release-version }}
           download-artifact: true
-          tags: "${{ env.TAGS }}"
+          tags: ${{ env.TAGS }}
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
