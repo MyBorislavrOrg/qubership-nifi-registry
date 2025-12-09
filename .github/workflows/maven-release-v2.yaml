@@ -22,7 +22,7 @@
 
 name: Maven release
 
-run-name: ${{ github.event.inputs.version-type }} release for ${{ github.event.repository.name }}
+run-name: "${{ github.event.inputs.version-type }} release for ${{ github.event.repository.name }}. Latest: ${{ github.event.inputs.mark-as-latest }}"
 
 on:
   workflow_dispatch:
