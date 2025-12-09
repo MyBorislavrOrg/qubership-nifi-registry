@@ -163,7 +163,7 @@ jobs:
     needs: [check-dockerfile, deploy]
     steps:
       - name: "Prepare Docker tags"
-        if: ! ${{ github.event.inputs.mark-as-latest == 'true' }}
+        if: ${{ ! github.event.inputs.mark-as-latest == 'true' }}
         id: meta
         uses: netcracker/qubership-workflow-hub/actions/metadata-action@v2.0.5
         with:
@@ -171,7 +171,7 @@ jobs:
           ref: ${{ needs.deploy.outputs.release-version }}
           default-tag: ${{ needs.deploy.outputs.release-version }}
       - name: Set env
-        if: ! ${{ github.event.inputs.mark-as-latest == 'true' }}
+        if: ${{ ! github.event.inputs.mark-as-latest == 'true' }}
         run: |
           echo "TAGS=${{ steps.meta.outputs.result }}" >> $GITHUB_ENV
 
