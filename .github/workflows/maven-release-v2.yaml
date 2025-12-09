@@ -169,7 +169,7 @@ jobs:
         with:
           default-template: "{{major}}.{{minor}}.{{patch}},{{major}}.{{minor}},{{major}}"
           ref: ${{ needs.deploy.outputs.release-version }}
-          dist-tag: ${{ needs.deploy.outputs.release-version }}
+          default-tag: ${{ needs.deploy.outputs.release-version }}
       - name: Set env
         if: ! ${{ github.event.inputs.mark-as-latest }}
         run: |
