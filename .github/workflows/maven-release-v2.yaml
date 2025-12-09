@@ -168,10 +168,14 @@ jobs:
         uses: netcracker/qubership-workflow-hub/actions/metadata-action@v2.0.5
         with:
           default-template: "{{major}}.{{minor}}.{{patch}}"
+          ref: ${{ github.ref }}
       - name: Set env
-        if: ! inputs.mark-as-latest
         run: |
-          echo "TAGS=${{ steps.meta.outputs.result }}" >> $GITHUB_ENV
+          if [ "${{ inputs.mark-as-latest }}" == "true" ]; then
+            echo "TAGS=''" >> $GITHUB_ENV
+          else
+            echo "TAGS=${{ steps.meta.outputs.result }}" >> $GITHUB_ENV
+          fi
 
       - name: "Docker Build"
         id: docker_build
